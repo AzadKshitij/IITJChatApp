@@ -6,4 +6,47 @@ Kshitij
 
 {% block body %}
 <h1 class="title">Kshitij</h1>
+<form action="{{ url_for('index') }}" method="POST">
+    <div>
+        {{props.registration_form.username(
+        class_='form-control',Placeholder='Username',autocomplete='off',
+        autofocus=true)}}
+        <ul>
+            {% for error in props.registration_form.username.errors %}
+            <li>
+                {{error}}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        {{props.registration_form.password(
+        class_='form-control',Placeholder='Password',type='password')}}
+        <ul>
+            {% for error in props.registration_form.password.errors %}
+            <li>
+                {{error}}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        {{props.registration_form.confirm_password(
+        class_='form-control',Placeholder='Confirm Password',type='password')}}
+        <ul>
+            {% for error in props.registration_form.confirm_password.errors %}
+            <li>
+                {{error}}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        {{ props.registration_form.submit_button }}
+    </div>
+
+    {{ props.registration_form.csrf_token }}
+</form>
 {% endblock body %}
